@@ -2,7 +2,7 @@ const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const { authValidation } = require("../validation");
 
-const User = require("../models/User");
+const User = require("../models/users.model");
 
 router.post("/register", async (req, res) => {
     // Validation
