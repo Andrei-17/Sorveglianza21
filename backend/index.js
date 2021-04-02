@@ -1,16 +1,20 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const dbName = 'sorveglianza';
+const dbName = "sorveglianza"; // replace with environment variable
 
 //Database Connection
-mongoose.connect(`mongodb://localhost:27017/${dbName}`, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(`mongodb://localhost:27017/${dbName}`, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
 
 // Importing routes
 const authRoute = require("./routes/auth");
 const sensorRoute = require("./routes/sensor");
+const clientRoute = require("./routes/client");
 
 // Middleware
 app.use((req, res, next) => {
@@ -24,5 +28,6 @@ app.use((req, res, next) => {
 // Route Middlewares
 app.use("/auth", authRoute);
 app.use("/sensor", sensorRoute);
+app.use("/client", clientRoute);
 
 app.listen(80, () => console.log("Server is running."));
