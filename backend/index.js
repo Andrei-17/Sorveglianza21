@@ -13,6 +13,7 @@ mongoose.connect(`mongodb://localhost:27017/${dbName}`, {
 });
 
 // Importing routes
+app.use(express.static("public"));
 const authRoute = require("./routes/auth");
 const sensorRoute = require("./routes/sensor");
 const clientRoute = require("./routes/client");
