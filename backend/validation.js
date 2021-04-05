@@ -17,5 +17,14 @@ const sensorValidation = (data) => {
     return schema.validate(data);
 };
 
+// Client Activations Validation
+const activationsValidation = (data) => {
+    const schema = Joi.object({
+        status: Joi.boolean().required(),
+    });
+    return schema.validate(data);
+};
+
 module.exports.authValidation = authValidation;
 module.exports.sensorValidation = sensorValidation;
+module.exports.activationsValidation = activationsValidation;
