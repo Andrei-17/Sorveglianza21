@@ -2,8 +2,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const mongoose = require("mongoose");
+require("dotenv").config();
 
-const dbName = "sorveglianza"; // replace with environment variable
+const dbName = process.env.DB_NAME;
 
 //Database Connection
 mongoose.connect(`mongodb://localhost:27017/${dbName}`, {

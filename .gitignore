@@ -3,3 +3,4 @@ backend/.env
 backend/public/images
 backend/package-lock.json
 sensors/venv
+sensors/__pycache__
