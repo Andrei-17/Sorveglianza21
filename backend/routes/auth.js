@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const { authValidation } = require("../validation");
+require("dotenv").config();
 
 const User = require("../models/users.model");
 
@@ -45,7 +46,9 @@ router.post("/login", async (req, res) => {
     const validPass = await bcrypt.compare(req.body.password, user.password);
     if (!validPass) return res.status(400).send("Invalid password.");
 
-    res.status(200);
+    // Creating and retrieving the JWT
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+    res.status(200).json({ jwt: token });
 });
 
 module.exports = router;
