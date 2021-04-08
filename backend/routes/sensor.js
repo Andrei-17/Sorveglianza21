@@ -16,10 +16,14 @@ router.post("/", async (req, res) => {
     if (error) return res.status(400).send(error.details[0].message);
     if (!(await isAlarmActive())) return res.sendStatus(200);
 
-    date = new Date();
+    const date = new Date();
 
     if (req.files && req.files.media) {
-        req.files.media.mv(`./public/images/${date.getTime()}.jpg`);
+        let imgName = "";
+        for (e of date.toISOString().split(":")) {
+            imgName += e;
+        }
+        req.files.media.mv(`./public/images/${imgName}.jpg`);
     }
 
     intrusion = new Intrusion({
